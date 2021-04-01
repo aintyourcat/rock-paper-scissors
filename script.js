@@ -13,36 +13,36 @@ function formatPlayerSelection(playerSelection) {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = formatPlayerSelection(playerSelection);
-    let isWon;
+    let won;
 
     switch (playerSelection) {
 	case 'Rock':
 	    switch (computerSelection) {
 		case 'Paper':
-		    isWon = false;
+		    won = false;
 		    break
 		case 'Scissors':
-		    isWon = true;
+		    won = true;
 		    break;
 	    }
 	    break;
 	case 'Paper':
 	    switch (computerSelection) {
 		case 'Rock':
-		    isWon = true;
+		    won = true;
 		    break
 		case 'Scissors':
-		    isWon = false;
+		    won = false;
 		    break;
 	    }
 	    break;
 	case 'Scissors':
 	    switch (computerSelection) {
 		case 'Rock':
-		    isWon = false;
+		    won = false;
 		    break
 		case 'Paper':
-		    isWon = true;
+		    won = true;
 		    break;
 	    }
 	    break;
@@ -50,9 +50,9 @@ function playRound(playerSelection, computerSelection) {
 	    return 'Input invalid!';
     }
 
-    if (isWon === undefined) {
+    if (won === undefined) {
 	return 'Draw!';
-    } else if(isWon === true) {
+    } else if(won === true) {
 	return `You win!, ${playerSelection} beats ${computerSelection}`;
     } else {
 	return `You lose!, ${computerSelection} beats ${playerSelection}`;
