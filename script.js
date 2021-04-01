@@ -1,64 +1,76 @@
-const OPTIONS = ['Rock', 'Paper', 'Scissors'];
-
 function computerPlay() {
-    return OPTIONS[Math.floor(Math.random() * 3)];
+    const ITEMS = ['Rock', 'Paper', 'Scissors'];
+    pickedItem = ITEMS[Math.floor(Math.random() * 3)];
+    return pickedItem;
+}
+
+function formatPlayerSelection(playerSelection) {
+    playerSelection = playerSelection.charAt(0).toUpperCase() +
+	playerSelection.slice(1).toLowerCase();
+
+    return playerSelection;
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+    playerSelection = formatPlayerSelection(playerSelection);
+    let isWon;
 
-    switch(playerSelection.toUpperCase()) {
-	case OPTIONS[0].toUpperCase():
-	    switch(computerSelection.toUpperCase()) {
-    	        case OPTIONS[0].toUpperCase():
-		    return 'Draw!';
-    	            break;
-    	        case OPTIONS[1].toUpperCase():
-		    return `You lose!, ${computerSelection} beats ${playerSelection}`;
-    	            break;
-    	        case OPTIONS[2].toUpperCase():
-		    return `You win!, ${playerSelection} beats ${computerSelection}`;
-    	            break;
-    	    }
+    switch (playerSelection) {
+	case 'Rock':
+	    switch (computerSelection) {
+		case 'Paper':
+		    isWon = false;
+		    break
+		case 'Scissors':
+		    isWon = true;
+		    break;
+	    }
 	    break;
-	case OPTIONS[1].toUpperCase():
-	    switch(computerSelection.toUpperCase()) {
-    	        case OPTIONS[0].toUpperCase():
-		    return `You win!, ${playerSelection} beats ${computerSelection}`;
-    	            break;
-    	        case OPTIONS[1].toUpperCase():
-		    return 'Draw!';
-    	            break;
-    	        case OPTIONS[2].toUpperCase():
-		    return `You lose!, ${computerSelection} beats ${playerSelection}`;
-    	            break;
-    	    }
+	case 'Paper':
+	    switch (computerSelection) {
+		case 'Rock':
+		    isWon = true;
+		    break
+		case 'Scissors':
+		    isWon = false;
+		    break;
+	    }
 	    break;
-	case OPTIONS[2].toUpperCase():
-	    switch(computerSelection.toUpperCase()) {
-    	        case OPTIONS[0].toUpperCase():
-		    return `You lose!, ${computerSelection} beats ${playerSelection}`;
-    	            break;
-    	        case OPTIONS[1].toUpperCase():
-		    return `You win!, ${playerSelection} beats ${computerSelection}`;
-    	            break;
-    	        case OPTIONS[2].toUpperCase():
-		    return 'Draw!';
-    	            break;
-    	    }
+	case 'Scissors':
+	    switch (computerSelection) {
+		case 'Rock':
+		    isWon = false;
+		    break
+		case 'Paper':
+		    isWon = true;
+		    break;
+	    }
 	    break;
 	default:
-	    return 'Invalid input!';
+	    return 'Input invalid!';
+    }
+
+    if (isWon === undefined) {
+	return 'Draw!';
+    } else if(isWon === true) {
+	return `You win!, ${playerSelection} beats ${computerSelection}`;
+    } else {
+	return `You lose!, ${computerSelection} beats ${playerSelection}`;
     }
 }
 
 function game() {
-    for(i=0; i<5; i++) {
-	let playerSelection = prompt('Your selection?', '');
-	
-	if(!(playerSelection === null || playerSelection === '')) {
+    let playerSelection;
+    let gameCount = 1;
+
+    while (gameCount <= 5) {
+	playerSelection = prompt('Your item?', '');
+
+	if (!(playerSelection === null || playerSelection === '')) {
 	    console.log(playRound(playerSelection, computerPlay()));
 	}
+
+	gameCount += 1;
     }
 }
 
