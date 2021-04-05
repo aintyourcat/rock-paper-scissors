@@ -40,6 +40,8 @@ button {
     cursor: pointer;
 }
 
+button:focus { outline-width: 0; }
+
 header {
     background-color: var(--white);
     padding: 30px 15px 0px;
@@ -63,6 +65,28 @@ main {
     border-top-width: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+@media (max-width: 600px) {
+    html {
+	font-size: 8px;
+    }
+
+    header, main {
+	width: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+	background-color: var(--white);
+	align-items: stretch;
+    }
+
+    header, main {
+	width: initial;
+	border-width: 0;
+    }
 }
 
 #items {
@@ -98,8 +122,6 @@ main {
     from { transform: scale(1.2) rotate(-30deg); }
     to { transform: scale(1) rotate(0deg); }
 }
-
-.item:focus { outline-width: 0; }
 
 .item:disabled {
     animation-name: none;
