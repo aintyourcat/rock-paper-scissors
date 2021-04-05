@@ -124,6 +124,7 @@ main {
 }
 
 .item:disabled {
+    opacity: 0.6;
     animation-name: none;
     cursor: default;
 }
